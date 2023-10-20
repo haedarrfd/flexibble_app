@@ -2,20 +2,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { NavLinks } from "@/constants";
 import AuthProviders from "./AuthProviders";
+import { getCurrentUser } from "@/lib/session";
+import ProfileMenu from "./ProfileMenu";
+import Button from "./Button";
 
-const Navbar = () => {
-  const session = {};
+const Navbar = async () => {
+  const session = await getCurrentUser();
 
   return (
     <nav className="navbar flex_between">
       <div className="flex-1 flex_start gap-10">
         <Link href="/">
-          <Image
-            src="/logo.svg"
-            alt="Flexibble Logo"
-            width={115}
-            height={115}
-          />
+          <Image src="/logo.svg" alt="Flexibble Logo" width={115} height={45} />
         </Link>
 
         {/* For Desktop Devices */}
@@ -29,10 +27,13 @@ const Navbar = () => {
       </div>
 
       <div className="flex_center gap-5">
-        {session ? (
+        {session?.user ? (
           <>
-            UserPhoto
-            <Link href="/create-project">Share Work</Link>
+            <ProfileMenu session={session} />
+
+            <Link href="/create-project">
+              <Button title="Share Work" />
+            </Link>
           </>
         ) : (
           <AuthProviders />

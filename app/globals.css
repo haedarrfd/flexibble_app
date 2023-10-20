@@ -36,7 +36,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 5px;
-  height: 4px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -72,7 +72,7 @@ body {
 }
 
 .delete_action_btn {
-  @apply p-3 text-gray-100 hover:bg-red-600 rounded-lg text-sm font-medium;
+  @apply p-3 text-gray-100 transition-colors hover:bg-red-500 rounded-lg text-sm font-medium;
 }
 
 /* Related Project Card */
